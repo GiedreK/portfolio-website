@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JavaScript2</title>
+
+    <style>
+        .done {
+            text-decoration: line-through;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+    <input id="item" type="text">
+    <button id="add">+</button>
+    <div>
+        <h1>TO DO</h1>
+        <ul class="todo">
+            <li>coffee</li>
+            <li>vitamins</li>
+            <li>paper</li>
+            <li>bananas</li>
+            <li>apples</li>
+            <li>maple syrup</li>
+        </ul>
+    </div>
+
+
+    <div>
+        <h1>DONE</h1>
+        <ul class="done">
+            <li>tea</li>
+        </ul>
+    </div>
+
+
+    <script>
+        let liItems = document.querySelectorAll("li");
+        let done = document.querySelector(".done");
+        let todo = document.querySelector(".todo");
+        let add = document.getElementById("add");
+
+        add.addEventListener('click', addItem);
+
+        function addItem() {
+            let element = document.createElement("li");
+            let input = document.getElementById("item");
+            if (input.value != "") {
+                element.innerHTML = input.value;
+                addClass(element);
+                todo.appendChild(element);
+            } else {
+                alert("cannot add empty task");
+            }
+        }
+
+        liItems.forEach(addClass);
+
+        function addClass(item) {
+            item.addEventListener('click', listClicked);
+        }
+
+        function listClicked(event) {
+            let cln = event.target.cloneNode(true);
+            addClass(cln);
+            let clickedClass = event.target.parentNode.className;
+
+            if (clickedClass == "done") {
+                todo.appendChild(cln);
+                done.removeChild(event.target);
+
+            }
+            if (clickedClass == "todo") {
+                done.appendChild(cln);
+                todo.removeChild(event.target);
+            }
+
+        }
+
+    </script>
+</body>
+
+</html>

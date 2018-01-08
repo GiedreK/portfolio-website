@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mouse</title>
+
+    <style>
+        .mouse1 {
+            width: 100px;
+            height: 100px;
+            background-image: url(mouse1.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            color: black;
+        }
+        
+        .nextImage {
+            background-image: url(mouse2.png);
+            width: 300px;
+            height: 300px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <audio id="sound1">
+    <source src="mouse.mp3" type="audio/mpeg"></audio>
+    <audio id="sound2">
+    <source src="hello.mp3" type="audio/mpeg">
+</audio>
+
+    <div class="mouse1" alt="mouse"></div>
+
+    <script>
+        let myImage = document.querySelector(".mouse1");
+        let interval = 1000;
+        let state = 'mouseRun';
+        let w = window.innerWidth;
+        let h = window.innerHeight;
+        let run = setInterval(mouseRun, interval);
+        let sound1 = document.getElementById("sound1");
+        let sound2 = document.getElementById("sound2");
+        let playing = false;
+        let level = 0;
+        let words = ["I was only playing with you this time!",
+            "nice catch, I will be faster next time!",
+            "try again",
+            "this one took you longer",
+            "you are a machine!",
+            "your mouse is too slow for me :)",
+            "I'm giving up",
+            "you are cheating!",
+            "oh jesus...",
+            "please let me know how you did it...",
+            "over 9000"
+        ]
+        sound1.loop = true;
+
+        function mouseRun() {
+            myImage.addEventListener('click', changeImage);
+            playAudio();
+            let xV = Math.floor(Math.random() * w);
+            let yV = Math.floor(Math.random() * h);
+            myImage.style.transform = "translate(" + xV + "px," + yV + "px)";
+        }
+
+        function playAudio() {
+            if (playing) {
+                //do nothing
+            } else {
+                sound1.play();
+                playing = true;
+            }
+        }
+
+        function changeImage() {
+            myImage.innerHTML = words[level];
+
+            if (level < words.length) {
+                level++;
+            } else {
+                level = 0;
+            }
+            myImage.removeEventListener('click', changeImage);
+            sound1.pause();
+            playing = false;
+            sound2.load();
+            sound2.play();
+            setTimeout(function() {
+                sound2.pause();
+                myImage.innerHTML = "";
+            }, 2000);
+
+            interval = interval * 0.75;
+            myImage.classList.add("nextImage");
+            clearInterval(run);
+            setTimeout(function() {
+                myImage.classList.remove("nextImage");
+                mouseRun();
+                run = setInterval(mouseRun, interval);
+            }, 2000);
+
+        }
+
+    </script>
+
+</body>
+
+
+</html>

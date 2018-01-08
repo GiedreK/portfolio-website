@@ -1,0 +1,172 @@
+body {
+    height: 100%;
+    margin: 0 auto;
+    background-color: black;
+
+}
+
+.stage {
+    background-image: url(stage.png);
+    background-position: center center;
+    background-size: contain;
+    background-repeat: repeat-x;
+    border: 3px solid green;
+}
+
+.hero {
+    display: block;
+    height: 20em;
+}
+
+.move {
+    animation: move_a;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes move_a {
+    from {
+        transform: translateX(0vw);
+    }
+    to {
+        transform: translateX(100vw);
+    }
+}
+
+.moveTo30 {
+    animation: moveTo30_a;
+    animation-duration: 2s;
+    transition-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes moveTo30_a {
+    from {
+        transform: translateX(0vw);
+    }
+    to {
+        transform: translateX(30vw);
+    }
+}
+
+.moveFrom30 {
+    animation: moveFrom30_a;
+    animation-duration: 2s;
+    transition-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+
+@keyframes moveFrom30_a {
+    from {
+        transform: translateX(30vw);
+    }
+    to {
+        transform: translateX(100vw);
+    }
+}
+
+.oneJump {
+    animation: oneJump_a;
+    animation-duration: 1s;
+}
+
+@keyframes oneJump_a {
+    50% {
+        transform: translateY(-10vh);
+    }
+    100% {
+        transform: translateY(0vh);
+    }
+}
+
+.jumping {
+    animation: jumping_a;
+    animation-duration: 1s;
+    animation-iteration-count: infinite; 
+}
+
+@keyframes jumping_a {
+    25% {
+        transform: translateY(-10vh) translateX(10vw);
+    }
+    50% {
+        transform: translateY(0vh) translateX(10vw);
+    }
+    75% {
+        transform: translateY(-10vh) translateX(0vw);
+    }
+    100%{
+        transform: translateY(0vh) translateX(0vw);
+    }
+}
+
+.fade {
+    animation: fade_a;
+    animation-duration: 3s;
+}
+
+@keyframes fade_a {
+    0% {
+        opacity: 0; 
+    }
+    33% { 
+        opacity:100;
+    }
+    
+    100% {
+        opacity: 0; 
+    }
+}
+
+.glow {
+    animation: glow_a;
+    animation-duration: 2s;
+}
+    @keyframes glow_a {
+    0% {
+        filter: drop-shadow(10px 10px 10px rgba(210, 248, 48, 0));
+    }
+    33% { 
+        filter: drop-shadow(10px 10px 10px rgba(210, 248, 48, 1));
+    }
+    100% {
+        filter: drop-shadow(10px 10px 10px rgba(210, 248, 48, 0));
+    }
+}
+
+
+.fallDown {
+    transition-duration:  0.3s;
+    transform: translate(100px, 100px) rotate(90deg);  
+    transition-timing-function: ease-in; 
+}
+
+.shake {
+    animation: shake_a;
+    animation-duration: 0.3s;
+    animation-iteration-count: 4;
+}
+
+@keyframes shake_a {
+    0% { transform: translate(2px, 1px) rotate(0deg); }
+	10% { transform: translate(-1px, -2px) rotate(-1deg); }
+	20% { transform: translate(-3px, 0px) rotate(1deg); }
+	30% { transform: translate(0px, 2px) rotate(0deg); }
+	40% { transform: translate(1px, -1px) rotate(1deg); }
+	50% { transform: translate(-1px, 2px) rotate(-1deg); }
+	60% { transform: translate(-3px, 1px) rotate(0deg); }
+	70% { transform: translate(2px, 1px) rotate(-1deg); }
+	80% { transform: translate(-1px, -1px) rotate(1deg); }
+	90% { transform: translate(2px, 2px) rotate(0deg); }
+	100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+.mirror {
+    transform: scaleX(-1); 
+}
+
+
+
+
+
+

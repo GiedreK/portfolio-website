@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Password Protected Area"
+AuthUserFile /customers/8/a/5/bnmstudio.com/httpd.www/redesigned/.htpasswd
+Require valid-user

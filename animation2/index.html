@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JSanimation</title>
+
+    <style>
+        body {
+            background-image: url(background.png);
+            background-position: center;
+            background-repeat: no-repeat;
+            position: absolute;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .girl {
+            background-image: url(girl1.png);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            height: 200px;
+            width: 150px;
+            position: absolute;
+            left: 80vw;
+            top: 10vh;
+            visibility: hidden;
+        }
+        
+        .monster {
+            background-image: url(monster1.png);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            position: absolute;
+            height: 300px;
+            width: 200px;
+            top: 1vh;
+            left: 1vw;
+            visibility: hidden;
+        }
+        
+        .sound1 {
+            display: none;
+        }
+        
+        button {
+            width: 200px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: black;
+            color: white;
+            display: block;
+            margin: 0 auto;
+            visibility: hidden;
+        }
+        
+        .fly {
+            animation: 2s fly_end;
+            animation-fill-mode: forwards;
+        }
+        
+        @keyframes fly_end {
+            to {
+                transform: translateX(40vw);
+            }
+        }
+        
+        .glow {
+            animation: glow_a 1s infinite;
+            animation-fill-mode: forwards;
+        }
+        
+        @keyframes glow_a {
+            0% {
+                filter: drop-shadow(10px 10px 10px rgba(196, 199, 184, 0));
+            }
+            33% {
+                filter: drop-shadow(10px 10px 10px rgba(196, 199, 184, 1));
+            }
+            100% {
+                filter: drop-shadow(10px 10px 10px rgba(196, 199, 184, 0));
+            }
+        }
+        
+        .winner {
+            font-size: 4em;
+            color: white;
+            text-align: center;
+            display: block;
+            margin: 0 auto;
+            visibility: hidden;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <audio class="sound1" preload="auto" controls>
+          <source src="sound1.mp3" type="audio/mpeg">Your browser does not support the audio element. 
+          </audio>
+
+    <div id="girl1" class="girl"> </div>
+    <div id="monster1" class="monster"> </div>
+    <div id="winner" class="winner"> </div>
+
+    <div class="links">
+        <a href="story_board.pdf"> Link to Storyboard</a>
+        <a href="sequence_diagram.jpg"> Link to Sequence Diagram</a>
+    </div>
+
+    <button>
+    watch
+    </button>
+
+
+    <script>
+        let sound1 = document.querySelector(".sound1");
+        let button = document.querySelector("button");
+        let girl1 = document.getElementById("girl1");
+        let monster = document.getElementById("monster1");
+        let winnerDiv = document.getElementById("winner");
+        let winner = [];
+
+        sound1.play();
+
+        sound1.addEventListener("ended", displayButton);
+
+        function displayButton() {
+            button.style.visibility = "visible";
+            button.classList.add("glow");
+        }
+
+        button.addEventListener('click', showGirl);
+
+        function showGirl() {
+            girl1.style.visibility = "visible";
+            button.style.visibility = "hidden";
+            girl1.classList.add("glow");
+        }
+
+        girl1.addEventListener('mouseover', showMonster);
+
+        function showMonster() {
+            girl1.removeEventListener('mouseover', showMonster);
+            girl1.classList.remove("glow");
+            monster.style.visibility = "visible";
+            setTimeout(flyMonster, 2000);
+
+            function flyMonster() {
+                monster.classList.add("fly");
+                setTimeout(monsterFlew, 2000);
+            }
+        }
+
+        function monsterFlew() {
+            monster.addEventListener('click', winMonster);
+            girl1.addEventListener('click', winGirl);
+            girl1.classList.add("glow");
+            monster.style.left = "40vw";
+            monster.classList.add("glow");
+        }
+
+        function winMonster() {
+            winner.push("monster");
+        }
+
+        function winGirl() {
+            winner.push("girl");
+        }
+
+        setInterval(checkWinner, 1000);
+
+        function checkWinner() {
+            if (winner[0] == "girl") {
+                console.log("girlWon");
+                winnerDiv.innerHTML = winner[0] + " WON";
+                girl1.classList.remove("glow");
+                monster.classList.remove("fly");
+                monster.classList.remove("glow");
+                winnerDiv.style.visibility = "visible";
+
+            }
+            if (winner[0] == "monster") {
+                console.log("monsterWon");
+                winnerDiv.innerHTML = winner[0] + " WON";
+                girl1.classList.remove("glow");
+                monster.classList.remove("fly");
+                monster.classList.remove("glow");
+                winnerDiv.style.visibility = "visible";
+
+            }
+        }
+
+    </script>
+</body>
+
+
+</html>

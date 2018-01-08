@@ -1,0 +1,142 @@
+/* Castle Glow////////////////////////////////////////*/
+body{
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding:0;
+    background-color: black;
+}
+
+
+.background{
+    position: absolute;
+    background-image: url(../images/background.png);
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-size: cover;
+}
+
+svg{
+    position: absolute;
+    width: 100vw;
+    bottom: 0;
+    height: auto;
+    z-index: 1000;
+    max-height: 100vh;
+}
+
+
+/*glow animation*/
+.castleglow{
+    animation: glow 2s forwards;
+}
+
+@keyframes glow{
+    100%{
+        filter: drop-shadow(0px 0px 8px rgba(0, 231, 255, 0.8));
+    }
+}
+
+/*appear professor animation*/
+.appearprofessor {
+animation: professorslideout ease-out 1s forwards;
+}
+@keyframes professorslideout {
+    from {
+     transform: translateX(40vw) translateY(50vh) scale(0.5);
+    opacity: 0;
+    }
+ to {
+     opacity: 1;
+     }
+}
+
+/*appear creature animation*/
+.appearcreature {
+animation: creatureslideout ease-out 1s forwards;
+}
+@keyframes creatureslideout {
+    from {
+     transform: translateX(30vw) translateY(30vh) scale(0.5);
+    opacity: 0;
+    }
+ to {
+     opacity: 1;
+     }
+}
+
+/*appear igor animation*/
+.appearigor {
+animation: igorslideout ease-out 1s forwards;
+}
+@keyframes igorslideout {
+    from {
+     transform: translateY(130vh) scale(0.5);
+    opacity: 0;
+    }
+ to {
+     opacity: 1;
+     }
+}
+
+/*eyedrop animation*/
+.eyeball {
+    transform-origin: 50% 50%;
+}
+.eyedrop {
+ animation: movetobottom ease-out 2s forwards;
+}
+@keyframes movetobottom {
+    5%{
+ transform: translateX(7%) rotate(0deg);
+ }
+ 30% {
+ transform: translateX(7%) translateY(470%) rotate(0deg);
+ }
+
+100%{
+ transform: translateX(1000%) translateY(470%) rotate(720deg);
+ }
+}
+
+.hide {
+    display: none;
+}
+
+#title-text{
+    animation: fade 5s forwards;
+}
+
+@keyframes fade{
+    80%{
+        opacity: 1;
+    }
+    to{
+        opacity: 0;
+    }
+}
+
+.arrow{
+    cursor:pointer;
+ animation: shake 1.1s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+ 25% {
+ transform: translateX(-10px);
+ }
+ 75% {
+ transform: translateX(10px);
+ }
+}
+
+.linktolab1{
+    position: absolute;
+    width:100vw;
+    height:100vh;
+    cursor: pointer;
+    }

@@ -1,0 +1,110 @@
+.brick {
+    width: 100vw;
+    background-image: url(../images/bg.png);
+    height: 88vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -100;
+}
+
+.floor {
+    background-image: url(../images/floor.png);
+    width: 100vw;
+    height: 12vh;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -100;
+}
+
+body {
+    width: 100vw;
+    opacity: 0;
+    animation: show 1.5s forwards;
+}
+
+@keyframes show {
+    to {
+        opacity: 1;
+    }
+}
+
+.circle:before {
+    content: " ";
+    position: absolute;
+    width: 1000px;
+    height: 1000px;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    margin: auto;
+    border-radius: 50%;
+    box-shadow: 0 0px 0 850px #000;
+    opacity: 0;
+    animation: growcircle 1.5s linear;
+    z-index: 1000;
+}
+
+@keyframes growcircle {
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 1;
+        width: 50px;
+        height: 50px;
+    }
+}
+
+.circle2:before {
+    content: " ";
+    position: absolute;
+    width: 1000px;
+    height: 1000px;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    margin: auto;
+    border-radius: 50%;
+    box-shadow: 0 0px 0 850px #000;
+    opacity: 0;
+    animation: growcircle2 1.5s linear reverse;
+    z-index: 1000;
+}
+
+@keyframes growcircle2 {
+    0% {
+        opacity: 0;
+    }
+    60% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+        width: 10px;
+        height: 10px;
+    }
+}
+
+.creature {
+    width: 100vw;
+    height: 100vh;
+    background: url(../images/scream.gif);
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+audio {
+    display: none;
+}
